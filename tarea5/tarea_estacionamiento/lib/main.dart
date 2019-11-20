@@ -20,9 +20,8 @@ class MyApp extends StatefulWidget{
 
 class _State extends State<MyApp> {
 
-  int horaI = 00, horaF=00, tarifaH =0, horasT, minT, Cmin =0, tarifaM = 0, minI = 00, minF = 00,Chor =0;
-  double total = 0, p =0;
-  String a;
+  int horaI = 00, cHor2=0, horaF=00, tarifaH =0, horasT, minT, cMin =0, tarifaM = 0, minI = 00, minF = 00,p, total=0;
+  double cHor = 0,  tiempo=0;
 
   TimeOfDay _Inicio = new TimeOfDay.now();
   TimeOfDay _Ultimo = new TimeOfDay.now();
@@ -72,19 +71,27 @@ void calcularTotal(){
 
       horasT = horaF - horaI;
       minT = minF-minI;
-      Cmin = (minT+(horasT*60))%60;
-      Chor = (minT+(horasT*60));
-      p= Chor/60;
+      //minutos
+      cMin = (minT+(horasT*60))%60;
 
-      if(Chor<=0.99){
+      //Horas
+      p = (minT+(horasT*60));
 
-        Chor = 0;
+      cHor = p/60;
 
-      }else{
+      cHor2= cHor.toInt();
 
-
-
+      //TOTAL
+      if(cMin<15){
+        total = cHor2*tarifaH;
+      }if(cMin>=15){
+        total = (cHor2*tarifaH)+(tarifaM);
+      }if(cMin>=30){
+        total = (cHor2*tarifaH)+(tarifaM*2);
+      }if(cMin>=45){
+        total = (cHor2*tarifaH)+(tarifaM*3);
       }
+
 
 
     }
@@ -205,8 +212,8 @@ void calcularTotal(){
 
                       new Text('Hora de Entrada: $horaI:$minI\n\n'),
                       new Text('Hora de Salida: $horaF:$minF\n'),
-                      new Text('Total:'),
-                      Text('$total. \nTiempo transcurrido $Chor : $Cmin'),
+                      new Text('Total: $total'),
+                      Text('\nTiempo transcurrido: $cHor2:$cMin '),
 
                     ],
                   ),

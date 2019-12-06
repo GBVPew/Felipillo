@@ -5,58 +5,44 @@ final bd=Firestore.instance;
 
 void main() => runApp(Nub());
 
-
 class Nub extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return Nubes();
+    return WhatsApp();
   }
 
 }
-class Nubes extends State{
+class WhatsApp extends State{
   final txtMensaje = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           brightness: Brightness.dark,
-          primaryColor: Colors.blueGrey[900],
-          accentColor: Colors.cyan[600],
-          fontFamily: 'Montserrat'
-      ),
+          ),
 
       home:
       Scaffold(
         appBar: AppBar(
 
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Image.asset('Imagenes/3.jpg', fit: BoxFit.cover,height: 40 ,),
-              Container(padding: const EdgeInsets.all(8.0), child: Text('KianitaSama + YuGiOh!'),
+              Container(padding: const EdgeInsets.all(8.0), child: Text('Lira'),
 
               )
             ],
           ),
-          /*Text("Kianitasama + tarashima",
-            style: TextStyle(
-            color: Colors.white,
-            fontSize: 23.0,
-            fontFamily: 'Arial',
-            ),
-          ),*/
+
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.filter_list),
-              color: Colors.grey,
+              icon: Icon(Icons.phone),
             ),
             IconButton(
-              icon: Icon(Icons.arrow_forward),
-              color: Colors.grey,
+              icon: Icon(Icons.category),
             ),
           ],
         ),
@@ -79,11 +65,12 @@ class Nubes extends State{
                   ),
                 ),
                 Card(
+                  color: Color.fromRGBO(236, 65, 145 , 50),
                     child: Row(
                       children: <Widget>[
                         Expanded(
                           child:
-                          Icon(Icons.camera_alt),
+                          Icon(Icons.camera_enhance),
                         ),
                         Expanded(
                           child:
@@ -104,7 +91,7 @@ class Nubes extends State{
                         Expanded(
                           child:
                           IconButton(
-                            icon: Icon(Icons.send), color: Colors.grey,
+                            icon: Icon(Icons.send),
                             onPressed: (){
                               colocar(txtMensaje.text);
                               txtMensaje.text = '';
@@ -120,10 +107,10 @@ class Nubes extends State{
                       child:
                       TextField(
                         decoration: InputDecoration(
-                            labelText: '¡Di Algo!',
-                            hintText: '¡Di Algo!',
+                            labelText: '¡Escribe aqui',
+                            hintText: ' ',
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(1)
+                                borderRadius: BorderRadius.circular(5)
 
                             )
                         ),
@@ -151,12 +138,12 @@ Widget retorna (int index ,DocumentSnapshot nubecita){
     margin: EdgeInsets.all(5.00),
     elevation: 10.0,
     child: ListTile(
-      leading: Image.asset('Imagenes/3.jpg', width: 60,),
-      title: Text('Yu-Gi-Oh !! ------ ', style: TextStyle(fontSize: 15.00, color: Colors.white),textAlign: TextAlign.center,),
+      leading: Image.asset('Imagenes/3.jpg', width: 35,),
+      title: Text('Lira', style: TextStyle(fontSize: 15.00, color: Color.fromRGBO(248, 160, 201 , 100)),textAlign: TextAlign.center,),
       subtitle:  Container(
         margin:const EdgeInsets.symmetric(vertical: 8.0),
         child: Container(
-          decoration:BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          decoration:BoxDecoration(color: Color.fromRGBO(255, 255, 255, 2), borderRadius: BorderRadius.circular(10)),
           child:
           Column(
             children: <Widget>[
@@ -164,7 +151,7 @@ Widget retorna (int index ,DocumentSnapshot nubecita){
                 margin: const EdgeInsets.only(
                     right: 5, left: 5, top: 5, bottom: 2.0),
                 child:
-                Text(nubecita.data['mensaje'],style: TextStyle(fontSize: 20, color: Colors.black),),
+                Text(nubecita.data['mensaje'],style: TextStyle(fontSize: 20, color: Color.fromRGBO(76, 7, 75, 5)),),
               )
             ],
           ),
